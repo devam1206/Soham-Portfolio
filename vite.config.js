@@ -9,14 +9,15 @@ export default defineConfig({
     assetsDir: 'assets',
     rollupOptions: {
       output: {
-        format: 'es',
-        entryFileNames: 'assets/[name]-[hash].js',
-        chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash].[ext]'
+        format: 'iife',
+        entryFileNames: '[name].[hash].js',
+        chunkFileNames: '[name].[hash].js',
+        assetFileNames: '[name].[hash].[ext]'
       }
     },
     target: 'es2015',
-    minify: 'terser'
+    minify: 'terser',
+    sourcemap: true
   },
   optimizeDeps: {
     include: ['react', 'react-dom']
