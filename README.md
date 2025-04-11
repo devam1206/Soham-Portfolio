@@ -65,13 +65,6 @@ src/
 - **Publications**: Research and academic work
 - **Contact**: Get in touch section
 
-## 🚀 Deployment
-
-This project is configured for easy deployment on Vercel, Netlify, or any other static site hosting service.
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 🤝 Contributing
 
@@ -79,6 +72,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📞 Contact
 
-- **Email**: [Your Email]
-- **LinkedIn**: [Your LinkedIn Profile]
-- **GitHub**: [Your GitHub Profile]
+- **Email**: [soham2612@gmail.com]
+- **LinkedIn**: [https://www.linkedin.com/in/s-desai/]
+- **GitHub**: [https://github.com/soham12112]
