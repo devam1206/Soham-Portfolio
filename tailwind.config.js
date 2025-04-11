@@ -8,11 +8,4 @@ export default {
     extend: {},
   },
   plugins: [],
-  purge: {
-    enabled: true,
-    content: [
-      "./index.html",
-      "./src/**/*.{js,ts,jsx,tsx}",
-    ],
-  },
 };
