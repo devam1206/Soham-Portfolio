@@ -3,7 +3,7 @@ import { Download } from "lucide-react";
 
 export default function CV() {
   return (
-    <div className="h-full py-20 px-4 md:px-8">
+    <div className="h-screen py-20 px-4 md:px-8">
       <div className="max-w-5xl mx-auto h-full flex flex-col">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text">Curriculum Vitae</h1>
