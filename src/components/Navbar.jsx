@@ -14,6 +14,7 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
   const inputRef = useRef(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(-1);
+  const [copyNotification, setCopyNotification] = useState(false); // State for the notification
 
   useEffect(() => {
     if (showPopup && inputRef.current) {
@@ -29,7 +30,8 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
   const handleOptionClick = (action) => {
     if (action === 'copyLink') {
       navigator.clipboard.writeText('https://soham-desai.vercel.app/');
-      alert('Link copied to clipboard!');
+      setCopyNotification(true); // Show the notification
+      setTimeout(() => setCopyNotification(false), 5000); // Hide after 5 seconds
     } else if (action === 'viewSource') {
       window.open('https://github.com/devam1206/Soham-Portfolio', '_blank');
     }
@@ -82,70 +84,79 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
   };
 
   return (
-    <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? 'block' : 'hidden'}`}>
-      <div className="fixed inset-0 bg-black opacity-50"></div>
-      <div
-        ref={popupRef}
-        className="bg-gray-800 text-white rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-10 backdrop-filter backdrop-blur-md flex flex-col"
-      >
-        <div className="p-4 border-b border-gray-700">
-          <input 
-            ref={inputRef}
-            type="text" 
-            placeholder="Type a command or search..." 
-            className="w-full p-3 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 text-base" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            onKeyDown={handleKeyDown}
-          />
-        </div>
-        <div className="px-4 py-2 overflow-y-auto flex-1">
-          {filteredGeneralItems.length > 0 && (
-            <>
-              <h3 className="text-base font-semibold text-gray-400 px-4">GENERAL</h3>
-              <ul className="py-2">
-                {filteredGeneralItems.map((item, index) => (
-                  <li 
-                    key={index} 
-                    className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
-                      selectedIndex === index ? 'bg-gray-700' : ''
-                    }`}
-                    onClick={() => handleOptionClick(item.action)}
-                  >
-                    {item.icon} {item.label}
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
-          
-          {filteredNavigationItems.length > 0 && (
-            <>
-              <h3 className="text-base font-semibold text-gray-400 px-4 pt-2">GO TO</h3>
-              <ul className="py-2">
-                {filteredNavigationItems.map((item, index) => (
-                  <li 
-                    key={index} 
-                    className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
-                      selectedIndex === index + filteredGeneralItems.length ? 'bg-gray-700' : ''
-                    }`}
-                    onClick={() => window.location.href = item.path}
-                  >
-                    {item.icon} <Link to={item.path}>{item.label}</Link>
-                  </li>
-                ))}
-              </ul>
-            </>
-          )}
+    <>
+      <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? 'block' : 'hidden'}`}>
+        <div className="fixed inset-0 bg-black opacity-50"></div>
+        <div
+          ref={popupRef}
+          className="bg-gray-800 text-white rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-10 backdrop-filter backdrop-blur-md flex flex-col"
+        >
+          <div className="p-4 border-b border-gray-700">
+            <input 
+              ref={inputRef}
+              type="text" 
+              placeholder="Type a command or search..." 
+              className="w-full p-3 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 text-base" 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleKeyDown}
+            />
+          </div>
+          <div className="px-4 py-2 overflow-y-auto flex-1">
+            {filteredGeneralItems.length > 0 && (
+              <>
+                <h3 className="text-base font-semibold text-gray-400 px-4">GENERAL</h3>
+                <ul className="py-2">
+                  {filteredGeneralItems.map((item, index) => (
+                    <li 
+                      key={index} 
+                      className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
+                        selectedIndex === index ? 'bg-gray-700' : ''
+                      }`}
+                      onClick={() => handleOptionClick(item.action)}
+                    >
+                      {item.icon} {item.label}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+            
+            {filteredNavigationItems.length > 0 && (
+              <>
+                <h3 className="text-base font-semibold text-gray-400 px-4 pt-2">GO TO</h3>
+                <ul className="py-2">
+                  {filteredNavigationItems.map((item, index) => (
+                    <li 
+                      key={index} 
+                      className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
+                        selectedIndex === index + filteredGeneralItems.length ? 'bg-gray-700' : ''
+                      }`}
+                      onClick={() => window.location.href = item.path}
+                    >
+                      {item.icon} <Link to={item.path}>{item.label}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
 
-          {filteredGeneralItems.length === 0 && filteredNavigationItems.length === 0 && (
-            <div className="text-gray-400 text-center py-8">
-              No results found for "{searchQuery}"
-            </div>
-          )}
+            {filteredGeneralItems.length === 0 && filteredNavigationItems.length === 0 && (
+              <div className="text-gray-400 text-center py-8">
+                No results found for "{searchQuery}"
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+
+      {/* Notification Popup */}
+      {copyNotification && (
+        <div className="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 rounded shadow-lg">
+          Link copied to clipboard!
+        </div>
+      )}
+    </>
   );
 };
 
