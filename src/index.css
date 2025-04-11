@@ -35,11 +35,6 @@ h1 {
   line-height: 1.1;
 }
 
-/* Remove light mode-specific styles */
-a:hover {
-  color: #747bff;
-}
-
 button {
   background-color: #0a0a0a;
 }
