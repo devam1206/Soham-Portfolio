@@ -1,6 +1,6 @@
 # Soham Desai - Portfolio Website
 
-A modern, responsive portfolio website built with React, Vite, and Tailwind CSS. This portfolio showcases my work as a Wireless Communications Engineer, featuring projects, publications, and professional information.
+A modern, responsive portfolio website built with React, Vite, and Tailwind CSS. This portfolio showcases Soham Desai's work as a Wireless Communications Engineer, featuring projects, publications, and professional information.
 
 ## 🚀 Features
 
