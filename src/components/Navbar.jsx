@@ -76,7 +76,10 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
   return (
     <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? 'block' : 'hidden'}`}>
       <div className="fixed inset-0 bg-black opacity-50"></div>
-      <div ref={popupRef} className="bg-gray-800 text-white rounded-lg shadow-lg w-1/3 h-2/3 z-10 backdrop-filter backdrop-blur-md flex flex-col">
+      <div
+        ref={popupRef}
+        className="bg-gray-800 text-white rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-10 backdrop-filter backdrop-blur-md flex flex-col"
+      >
         <div className="p-4 border-b border-gray-700">
           <input 
             ref={inputRef}
