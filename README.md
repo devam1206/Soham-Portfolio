@@ -1,12 +1,84 @@
-# React + Vite
+# Soham Desai - Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive portfolio website built with React, Vite, and Tailwind CSS. This portfolio showcases my work as a Wireless Communications Engineer, featuring projects, publications, and professional information.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Modern UI/UX**: Clean and professional design with smooth animations
+- **Responsive Design**: Fully responsive layout that works on all devices
+- **Dark Mode**: Built-in dark mode support
+- **Interactive Components**: 
+  - Command palette for quick navigation
+  - Smooth page transitions
+  - Interactive project cards
+- **Performance Optimized**: Built with Vite for fast development and production builds
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Frontend Framework**: React 19
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS
+- **Animation**: Framer Motion
+- **Routing**: React Router DOM
+- **Icons**: Lucide React
+- **Notifications**: React Toastify
+
+## 📦 Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/devam1206/Soham-Portfolio.git
+cd Soham-Portfolio
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Start the development server:
+```bash
+npm run dev
+```
+
+4. Build for production:
+```bash
+npm run build
+```
+
+## 🎨 Project Structure
+
+```
+src/
+├── assets/         # Static assets
+├── components/     # Reusable components
+├── pages/         # Page components
+└── styles/        # Global styles
+```
+
+## 🔑 Key Components
+
+- **Navbar**: Responsive navigation with command palette
+- **Home**: Landing page with introduction
+- **About**: Professional background and skills
+- **Projects**: Showcase of work and achievements
+- **Publications**: Research and academic work
+- **Contact**: Get in touch section
+
+## 🚀 Deployment
+
+This project is configured for easy deployment on Vercel, Netlify, or any other static site hosting service.
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📞 Contact
+
+- **Email**: [Your Email]
+- **LinkedIn**: [Your LinkedIn Profile]
+- **GitHub**: [Your GitHub Profile]
