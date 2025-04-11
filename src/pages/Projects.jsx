@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Projects() {
   return (
-    <div className="py-20 px-4 md:px-8">
+    <div className="py-10 px-4 md:px-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl md:text-4xl font-bold mb-8 text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text">Projects.</h1>
         <div className="grid gap-8">
