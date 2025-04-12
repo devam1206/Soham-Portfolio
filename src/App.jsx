@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import CV from "./pages/cv";
-// import Contact from "./pages/Contact";
+import Contact from "./pages/Contact";
 import Publications from "./pages/Publications";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -21,7 +21,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/cv" element={<CV />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/contact" element={<Contact />} />
             <Route path="/publications" element={<Publications />} />
           </Routes>
         </main>

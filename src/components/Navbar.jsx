@@ -40,7 +40,7 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
 
   const generalItems = [
     { icon: <LinkIcon className="w-5 h-5 mr-3" />, label: 'Copy Link', action: 'copyLink' },
-    { icon: <Mail className="w-5 h-5 mr-3" />, label: 'Send Email' },
+    { icon: <Mail className="w-5 h-5 mr-3" />, label: 'Send Email', path:'/contact' },
     { icon: <Code className="w-5 h-5 mr-3" />, label: 'View Source', action: 'viewSource' }
   ];
 
@@ -89,7 +89,7 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div
           ref={popupRef}
-          className="bg-gray-800 text-white rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-10 backdrop-filter backdrop-blur-md flex flex-col"
+          className="bg-gray-800 text-white rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-[9999] backdrop-filter backdrop-blur-md flex flex-col"
         >
           <div className="p-4 border-b border-gray-700">
             <input 

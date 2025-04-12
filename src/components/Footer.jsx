@@ -1,5 +1,6 @@
 import React from "react";
 import { Github, Linkedin, Mail, GraduationCap } from "lucide-react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 export default function Footer() {
   return (
@@ -7,12 +8,12 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col items-center gap-6">
         <div className="flex gap-6">
           {/* Email Link */}
-          <a
-            href="mailto:soham2612@gmail.com"
+          <Link
+            to="/contact" // Link to the Contact page
             className="text-slate-400 hover:text-white transition-colors"
           >
             <Mail className="w-6 h-6" />
-          </a>
+          </Link>
 
           {/* GitHub Link */}
           <a
@@ -44,9 +45,7 @@ export default function Footer() {
             <GraduationCap className="w-6 h-6" />
           </a>
         </div>
-
-        
       </div>
     </footer>
   );
-} 
+}
