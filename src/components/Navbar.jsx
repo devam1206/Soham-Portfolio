@@ -27,13 +27,15 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
     setSelectedIndex(-1);
   }, [searchQuery]);
 
-  const handleOptionClick = (action) => {
+  const handleOptionClick = (action, path) => {
     if (action === 'copyLink') {
       navigator.clipboard.writeText('https://soham-desai.vercel.app/');
       setCopyNotification(true); // Show the notification
       setTimeout(() => setCopyNotification(false), 5000); // Hide after 5 seconds
     } else if (action === 'viewSource') {
       window.open('https://github.com/devam1206/Soham-Portfolio', '_blank');
+    } else if (path) {
+      window.location.href = path; // Navigate to the specified path
     }
     onClose();
   };
@@ -77,7 +79,7 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
       if (selectedItem.action) {
         handleOptionClick(selectedItem.action);
       } else if (selectedItem.path) {
-        window.location.href = selectedItem.path;
+        handleOptionClick(null, selectedItem.path);
       }
       onClose();
     }
@@ -108,12 +110,12 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
                 <h3 className="text-base font-semibold text-gray-400 px-4">GENERAL</h3>
                 <ul className="py-2">
                   {filteredGeneralItems.map((item, index) => (
-                    <li 
-                      key={index} 
+                    <li
+                      key={index}
                       className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
                         selectedIndex === index ? 'bg-gray-700' : ''
                       }`}
-                      onClick={() => handleOptionClick(item.action)}
+                      onClick={() => handleOptionClick(item.action, item.path)} // Pass both action and path
                     >
                       {item.icon} {item.label}
                     </li>
@@ -132,7 +134,7 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
                       className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
                         selectedIndex === index + filteredGeneralItems.length ? 'bg-gray-700' : ''
                       }`}
-                      onClick={() => window.location.href = item.path}
+                      onClick={() => handleOptionClick(null, item.path)}
                     >
                       {item.icon} <Link to={item.path}>{item.label}</Link>
                     </li>
