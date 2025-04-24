@@ -9,10 +9,12 @@ import Contact from "./pages/Contact";
 import Publications from "./pages/Publications";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Analytics } from "@vercel/analytics/react";
 
 const App = () => {
   return (
     <Router>
+      <Analytics />
       <div className="min-h-screen flex flex-col bg-[#0a0a0a] overflow-y-auto">
         <Navbar />
         <main className="flex-1">
