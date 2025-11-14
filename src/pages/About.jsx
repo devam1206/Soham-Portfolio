@@ -62,7 +62,7 @@ export default function About() {
           <h3 className="text-2xl font-bold text-white mb-4">Career</h3>
           <div className="text-slate-400 space-y-6">
             <div>
-              <p className="text-lg font-bold">Wireless Systems Lead (CTO R&D Group) – Skylo Tech Inc.</p>
+              <p className="text-lg font-bold">Staff Wireless Systems Engineer (CTO R&D Group) – Skylo Tech Inc.</p>
               <p className="text-sm text-gray-400">Apr 2022 – Current • {calculateDuration('2022-04-01', 'current')}</p>
             </div>
             <div>

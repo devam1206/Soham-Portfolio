@@ -1,0 +1,746 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Speed Estimation for Underwater Animals</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="29d8349b-0e16-81b9-b21d-da5453251157" class="page sans"><header><h1 class="page-title">Speed Estimation for Underwater Animals</h1><p class="page-description"></p></header><div class="page-body"><hr id="29d8349b-0e16-81a9-9419-e0147687c571"/><h2 id="29d8349b-0e16-8101-9343-f78cd29f4592" class="">Kinematic sensor data Approach</h2><p id="29d8349b-0e16-81d5-b9ac-e502b48f6890" class="">Our approach to estimating whale swimming speed using kinematic sensor data and a machine learning regression model was derived after comparing various ML models. This method is designed as a robust alternative or complement to video-based speed estimation when video quality is low or unreliable.</p><hr id="29d8349b-0e16-8115-85b8-dc5144cc486b"/><h3 id="29d8349b-0e16-8175-849e-c5e044f3c8bb" class="">Model Training — Random Forest Regression (Best found)</h3><ul id="29d8349b-0e16-8110-832b-e6b68aaf6d38" class="bulleted-list"><li style="list-style-type:disc">Use extracted features as inputs (<code>X</code>) and known speed (<code>speedJJ</code>) as the target (<code>y</code>).</li></ul><ul id="29d8349b-0e16-8159-9997-ea731149e1a1" class="bulleted-list"><li style="list-style-type:disc">Split data into training (80%) and test (20%) sets.</li></ul><ul id="29d8349b-0e16-8179-96f5-fd1dcfe3ff7a" class="bulleted-list"><li style="list-style-type:disc">Train a <strong>Random Forest Regressor</strong> to map kinematic features to swimming speed.</li></ul><ul id="29d8349b-0e16-8174-b7dd-ff83f78681bd" class="bulleted-list"><li style="list-style-type:disc">Evaluate model performance using Mean Squared Error (MSE) and R² score on the test set.</li></ul><p id="29d8349b-0e16-8105-9735-da99c92d8448" class=""><em>Evaluation metrics:</em></p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="29d8349b-0e16-810a-ab10-ed66717ffd33" class="code code-wrap"><code class="language-Plain Text" style="white-space:pre-wrap;word-break:break-all">Test MSE: 0.0234
+Test R²: 0.92</code></pre><hr id="29d8349b-0e16-8133-97c5-d429d84acfba"/><h3 id="29d8349b-0e16-8166-b438-eb433bae6e4f" class="">Results Visualization</h3><ul id="29d8349b-0e16-812c-9595-c6a30b94957c" class="bulleted-list"><li style="list-style-type:disc">Plot predicted vs actual speed values for the test set to assess model accuracy visually.</li></ul><p id="29d8349b-0e16-81b8-9afc-ee4428b64f8f" class=""><em>Resulting plot:</em></p><figure id="29d8349b-0e16-81b9-a5a2-d243676f306c" class="image"><a href="Speed%20Estimation%20for%20Underwater%20Animals/Actual_vs_Predicted_2.png"><img style="width:709.9937744140625px" src="Speed%20Estimation%20for%20Underwater%20Animals/Actual_vs_Predicted_2.png"/></a></figure><hr id="29d8349b-0e16-8107-88fb-c4a57b6e16bc"/><h3 id="29d8349b-0e16-810c-8e66-ce234ce5260a" class=""></h3><figure id="29d8349b-0e16-8179-8457-d1725d8f8279" class="image"><a href="Speed%20Estimation%20for%20Underwater%20Animals/actual_Vs_predicted_3.png"><img style="width:709.9874877929688px" src="Speed%20Estimation%20for%20Underwater%20Animals/actual_Vs_predicted_3.png"/></a></figure><hr id="29d8349b-0e16-8158-a5b3-e5f1f8baf720"/><h2 id="29d8349b-0e16-81ed-8cd1-dcbdbb1ffc68" class="">Optical Flow Method</h2><p id="29d8349b-0e16-80a1-8478-c3898bc593ee" class="">
+</p><p id="29d8349b-0e16-8028-8f9c-c7462ee7b5fc" class="">Optical flow is a computer vision technique that analyzes the apparent motion of objects, surfaces, and edges in a visual scene. It works by calculating how pixel intensities move between consecutive frames of video, essentially creating a &quot;flow field&quot; that represents the velocity of brightness patterns. This flow field appears as a series of vectors indicating the direction and magnitude of movement for pixels or regions within the frame.</p><p id="29d8349b-0e16-807e-8543-cd65e854e06a" class="">At its core, optical flow operates on the assumption that pixel intensities remain relatively constant between adjacent frames, allowing algorithms to track their movement. This method is particularly valuable for understanding motion dynamics in video without needing to identify or classify specific objects.</p><h2 id="29d8349b-0e16-8063-997d-e06165638429" class="">Speed Estimation Using Optical Flow</h2><p id="29d8349b-0e16-8005-9769-d81a1a2dd5c0" class="">Optical flow provides a powerful framework for estimating speed from video feeds through these key steps:</p><ul id="29d8349b-0e16-8061-9a50-e4de8f76c1dd" class="bulleted-list"><li style="list-style-type:disc"><strong>Motion vector extraction:</strong> Algorithms like Lucas-Kanade calculate displacement vectors between frames, showing how far pixels have moved.</li></ul><ul id="29d8349b-0e16-8084-86ce-e931d072dd1b" class="bulleted-list"><li style="list-style-type:disc"><strong>Camera calibration:</strong> To convert pixel movement to real-world measurements, the system must be calibrated using known reference objects or distances in the scene.</li></ul><ul id="29d8349b-0e16-80f6-bc71-efa5cd5e926b" class="bulleted-list"><li style="list-style-type:disc"><strong>Scaling and transformation:</strong> The pixel displacement is scaled according to calibration parameters, accounting for perspective effects and camera position.</li></ul><ul id="29d8349b-0e16-8030-96db-c85758d1d386" class="bulleted-list"><li style="list-style-type:disc"><strong>Temporal normalization:</strong> Raw displacement is divided by the time interval between frames to calculate velocity.</li></ul><p id="29d8349b-0e16-806b-aa18-da5919ce1caf" class="">This approach enables systems to measure vehicle speeds on roadways, analyze athlete performance in sports, monitor crowd flow in public spaces, and quantify various moving objects without needing physical sensors. The non-invasive nature of video-based speed estimation makes it particularly valuable for traffic monitoring, surveillance, and sports analysis applications.</p><h1 id="29d8349b-0e16-8038-a627-d17571b4eacd" class="">Method 2.1 Lucas Kanade Method</h1><p id="29d8349b-0e16-8068-8536-e45c98c1609f" class="">The Lucas-Kanade method is a widely used differential technique for optical flow estimation that was developed by Bruce D. Lucas and Takeo Kanade in 1981. This approach assumes that the flow is essentially constant in a local neighborhood of the pixel under consideration, and solves the basic optical flow equations for all the pixels in that neighborhood, using the least squares method.</p><h2 id="29d8349b-0e16-8054-9783-c930ae7d9d7a" class="">Core Principles</h2><p id="29d8349b-0e16-80ec-9f47-f46b13eb7140" class="">The Lucas-Kanade method works based on three key assumptions:</p><ul id="29d8349b-0e16-8012-8575-e2ac2f5fd57e" class="bulleted-list"><li style="list-style-type:disc">Brightness constancy: The brightness of a pixel doesn&#x27;t change as it moves from frame to frame</li></ul><ul id="29d8349b-0e16-8025-9562-d23c9b0fc53d" class="bulleted-list"><li style="list-style-type:disc">Temporal persistence: The motion of a surface patch changes slowly over time</li></ul><ul id="29d8349b-0e16-8059-aff2-d7473b7a68d0" class="bulleted-list"><li style="list-style-type:disc">Spatial coherence: Neighboring pixels have similar motion</li></ul><h2 id="29d8349b-0e16-804e-a6d0-ef5a08d74f0e" class="">Mathematical Formulation</h2><p id="29d8349b-0e16-801e-9a87-e95b375fa98f" class="">For a pixel (x,y) at time t, if we denote the intensity as I(x,y,t), then the brightness constancy assumption can be formulated as:</p><figure id="29d8349b-0e16-8093-aa42-f07dc804d17b" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>I</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo separator="true">,</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>I</mi><mo stretchy="false">(</mo><mi>x</mi><mo>+</mo><mi>d</mi><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo>+</mo><mi>d</mi><mi>y</mi><mo separator="true">,</mo><mi>t</mi><mo>+</mo><mi>d</mi><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">I(x, y, t) = I(x + dx, y + dy, t + dt)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="mopen">(</span><span class="mord mathnormal">x</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">t</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">d</span><span class="mord mathnormal">t</span><span class="mclose">)</span></span></span></span></span></div></figure><p id="29d8349b-0e16-805b-a5c9-fa8071efc54e" class="">Using Taylor series expansion and assuming small motion, we get the optical flow constraint equation:</p><figure id="29d8349b-0e16-80dc-b04b-fbcff6c1d836" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>I</mi><mi>x</mi></msub><mi>u</mi><mo>+</mo><msub><mi>I</mi><mi>y</mi></msub><mi>v</mi><mo>+</mo><msub><mi>I</mi><mi>t</mi></msub><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">I_x u + I_y v + I_t = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">x</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord mathnormal">u</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.03588em;">y</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">I</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.2806em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">0</span></span></span></span></span></div></figure><p id="29d8349b-0e16-80ad-8bf3-d3b703b6321e" class="">Where:</p><ul id="29d8349b-0e16-80f5-bc4c-de702c112508" class="bulleted-list"><li style="list-style-type:disc">I₍ₓ₎ and I₍y₎ are the spatial derivatives of the image intensity</li></ul><ul id="29d8349b-0e16-8046-b2da-eedbb89cb807" class="bulleted-list"><li style="list-style-type:disc">I₍t₎ is the temporal derivative</li></ul><ul id="29d8349b-0e16-805b-bcfd-eb8a0a79a14a" class="bulleted-list"><li style="list-style-type:disc">u and v are the x and y components of the optical flow</li></ul><p id="29d8349b-0e16-8022-9d8d-f5caf82f3490" class="">Since this equation has two unknowns, the Lucas-Kanade method assumes that the flow is constant in a small window. By applying the equation to all pixels in the window and solving the resulting overdetermined system using least squares, we can estimate the flow vector.</p><h2 id="29d8349b-0e16-8000-a6b0-e845d1b46aa9" class="">Speed Estimation Using Optical Flow</h2><p id="29d8349b-0e16-8055-b5c3-c46fb44a0282" class="">Optical flow can be converted to speed measurements through these steps:</p><h3 id="29d8349b-0e16-8013-8c75-c3f0839a2d15" class="">1. Calibration</h3><p id="29d8349b-0e16-80e8-a3c2-f28e0bfbf6e6" class="">First, establish a relationship between pixel displacement and real-world distance. This typically requires camera calibration and knowledge of the scene geometry.</p><h3 id="29d8349b-0e16-8077-9494-ec4ff1965056" class="">2. Flow Vector Calculation</h3><p id="29d8349b-0e16-8021-8de3-fc4b63fa1ed3" class="">Apply the Lucas-Kanade method to obtain flow vectors (u,v) between consecutive frames.</p><h3 id="29d8349b-0e16-807e-b173-e2d51001440f" class="">3. Magnitude Calculation</h3><p id="29d8349b-0e16-801b-92ee-d14cac71091e" class="">Calculate the magnitude of the flow vector:</p><figure id="29d8349b-0e16-80a4-b1d3-fb430d4ab9ef" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mover accent="true"><mi>V</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mo>=</mo><msqrt><mrow><msup><mi>u</mi><mn>2</mn></msup><mo>+</mo><msup><mi>v</mi><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">||\vec{V}|| = \sqrt{u^2 + v^2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2163em;vertical-align:-0.25em;"></span><span class="mord">∣∣</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2355em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mord">∣∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.24em;vertical-align:-0.1777em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0623em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord"><span class="mord mathnormal">u</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span><span style="top:-3.0223em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="1.28em" viewBox="0 0 400000 1296" preserveAspectRatio="xMinYMin slice"><path d="M263,681c0.7,0,18,39.7,52,119
+c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120
+c340,-704.7,510.7,-1060.3,512,-1067
+l0 -0
+c4.7,-7.3,11,-11,19,-11
+H40000v40H1012.3
+s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232
+c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1
+s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26
+c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z
+M1001 80h400000v40h-400000z"/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1777em;"><span></span></span></span></span></span></span></span></span></span></div></figure><h3 id="29d8349b-0e16-80b8-9195-f8f9f214b84c" class="">4. Speed Conversion</h3><p id="29d8349b-0e16-8080-95ef-fa8452140d92" class="">Convert the flow magnitude to actual speed:</p><figure id="29d8349b-0e16-8062-9442-d91164b4909e" class="equation"><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>S</mi><mi>p</mi><mi>e</mi><mi>e</mi><mi>d</mi><mo>=</mo><mfrac><mrow><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mover accent="true"><mi>V</mi><mo>⃗</mo></mover><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mo>×</mo><mi>S</mi><mi>c</mi><mi>a</mi><mi>l</mi><mi>e</mi><mo>×</mo><mi>F</mi><mi>P</mi><mi>S</mi></mrow><mrow><mi>C</mi><mi>a</mi><mi>l</mi><mi>i</mi><mi>b</mi><mi>r</mi><mi>a</mi><mi>t</mi><mi>i</mi><mi>o</mi><mi>n</mi><mtext> </mtext><mi>F</mi><mi>a</mi><mi>c</mi><mi>t</mi><mi>o</mi><mi>r</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">Speed = \frac{||\vec{V}|| \times Scale \times FPS}{Calibration\: Factor}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Sp</span><span class="mord mathnormal">ee</span><span class="mord mathnormal">d</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.3293em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6433em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">ib</span><span class="mord mathnormal" style="margin-right:0.02778em;">r</span><span class="mord mathnormal">a</span><span class="mord mathnormal">t</span><span class="mord mathnormal">i</span><span class="mord mathnormal">o</span><span class="mord mathnormal">n</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal">a</span><span class="mord mathnormal">c</span><span class="mord mathnormal">t</span><span class="mord mathnormal" style="margin-right:0.02778em;">or</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">∣∣</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9663em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal" style="margin-right:0.22222em;">V</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.2355em;"><span class="overlay" style="height:0.714em;width:0.471em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.471em" height="0.714em" style="width:0.471em" viewBox="0 0 471 714" preserveAspectRatio="xMinYMin"><path d="M377 20c0-5.333 1.833-10 5.5-14S391 0 397 0c4.667 0 8.667 1.667 12 5
+3.333 2.667 6.667 9 10 19 6.667 24.667 20.333 43.667 41 57 7.333 4.667 11
+10.667 11 18 0 6-1 10-3 12s-6.667 5-14 9c-28.667 14.667-53.667 35.667-75 63
+-1.333 1.333-3.167 3.5-5.5 6.5s-4 4.833-5 5.5c-1 .667-2.5 1.333-4.5 2s-4.333 1
+-7 1c-4.667 0-9.167-1.833-13.5-5.5S337 184 337 178c0-12.667 15.667-32.333 47-59
+H213l-171-1c-8.667-6-13-12.333-13-19 0-4.667 4.333-11.333 13-20h359
+c-16-25.333-24-45-24-59z"/></svg></span></span></span></span></span></span></span><span class="mord">∣∣</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="mord mathnormal">c</span><span class="mord mathnormal">a</span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">e</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal" style="margin-right:0.05764em;">FPS</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></div></figure><p id="29d8349b-0e16-8014-8f41-feabca32a984" class="">Where:</p><ul id="29d8349b-0e16-80a3-ac32-c5f4af9e8ac0" class="bulleted-list"><li style="list-style-type:disc">Scale is the real-world distance per pixel</li></ul><ul id="29d8349b-0e16-8087-9f9e-ee94c2ecbbd8" class="bulleted-list"><li style="list-style-type:disc">FPS is frames per second of the video</li></ul><ul id="29d8349b-0e16-80e7-8924-ceb6e2a80bb6" class="bulleted-list"><li style="list-style-type:disc">Calibration Factor adjusts for perspective and camera parameters</li></ul><p id="29d8349b-0e16-808f-b4b3-d808b436c95f" class="">
+</p><p id="29d8349b-0e16-804a-b8b7-c199d32b4191" class="">
+</p><h1 id="29d8349b-0e16-80d2-a451-ea7c47b6612b" class="">Method 2.2 Weighted Optical Flow Methods for Underwater Applications</h1><p id="29d8349b-0e16-8070-84d7-fc8ae272ac37" class="">
+</p><figure id="29d8349b-0e16-80fc-b8c5-edf332c52af2"><div class="source"><a href="https://arxiv.org/html/2407.13159v1">https://arxiv.org/html/2407.13159v1</a></div></figure><p id="29d8349b-0e16-8023-a559-c1e7e8df9211" class="">
+</p><p id="29d8349b-0e16-8062-af03-e079604c1708" class="">
+</p><p id="29d8349b-0e16-80f3-937c-c08338833705" class="">
+</p><table id="29d8349b-0e16-803d-b7cb-dbf32cc118e2" class="simple-table"><thead class="simple-table-header"><tr id="29d8349b-0e16-805b-a9f1-c4828944a614"><th id="Zez;" class="simple-table-header-color simple-table-header">Video</th><th id="vhmw" class="simple-table-header-color simple-table-header">What it shows</th><th id="ZExu" class="simple-table-header-color simple-table-header">Why it’s useful</th></tr></thead><tbody><tr id="29d8349b-0e16-80a0-8075-e170ca17ba32"><td id="Zez;" class=""><strong>Optical Flow Video</strong></td><td id="vhmw" class="">Motion direction &amp; speed per pixel (color-coded vectors)</td><td id="ZExu" class="">See how the camera or environment is moving</td></tr><tr id="29d8349b-0e16-80ba-abc9-fffc6a3b4bdb"><td id="Zez;" class=""><strong>Weights / Attenuation Map Video</strong></td><td id="vhmw" class="">Clarity/confidence of each pixel’s motion</td><td id="ZExu" class="">Identify reliable vs unreliable regions under water</td></tr></tbody></table><h3 id="29d8349b-0e16-8028-be26-cb9132f2bb24" class="">1. Flow Video</h3><h3 id="29d8349b-0e16-8087-aff6-ea7d76ae5d5b" class="">What it represents</h3><ul id="29d8349b-0e16-80cf-b7aa-d0fbcef818ff" class="bulleted-list"><li style="list-style-type:disc">Each pixel has a small <strong>motion vector</strong> → “this spot moved right by 2 pixels and up by 1 pixel.”</li></ul><ul id="29d8349b-0e16-80d9-9263-e342fcc6a238" class="bulleted-list"><li style="list-style-type:disc">The color encodes that:<ul id="29d8349b-0e16-80bd-a284-d6fbb0268db3" class="bulleted-list"><li style="list-style-type:circle"><strong>Hue (color)</strong> = direction of motion<ul id="29d8349b-0e16-806c-ab6a-d7bf8f09b831" class="bulleted-list"><li style="list-style-type:square">e.g. right = red, left = cyan, up = yellow, down = blue.</li></ul></li></ul><ul id="29d8349b-0e16-8098-945d-f32da4d7fea7" class="bulleted-list"><li style="list-style-type:circle"><strong>Brightness (intensity)</strong> = how <em>fast</em> that motion is (stronger color = faster).</li></ul></li></ul><ul id="29d8349b-0e16-8088-aa1d-f7e2bc97d651" class="bulleted-list"><li style="list-style-type:disc">So, if you see colorful ripples in the flow video, that means parts of the scene are moving relative to the camera — or vice versa.</li></ul><h3 id="29d8349b-0e16-80c7-901f-f6e51c55d67f" class="">💡 How to read it </h3><ul id="29d8349b-0e16-80a1-a894-f0be7553b92e" class="bulleted-list"><li style="list-style-type:disc">If the camera is moving forward, <strong>background areas (rocks, seafloor)</strong> will show <strong>outward radial flow</strong> (colors radiating away from the center).</li></ul><ul id="29d8349b-0e16-80b7-82fb-d6c57a3b5e2b" class="bulleted-list"><li style="list-style-type:disc">If the animal turns left, the scene will appear to sweep right (color pattern rotates).</li></ul><ul id="29d8349b-0e16-8062-bf9b-ee038b8a520f" class="bulleted-list"><li style="list-style-type:disc">Bubbles or fish that move independently will show odd, inconsistent colors — those are <em>non-rigid</em> motions.</li></ul><p id="29d8349b-0e16-8080-a94c-efc0ee1f0e3d" class="">So, the <strong>flow video</strong> is a <em>map of motion</em> — a way to visualize the movement your algorithm detected between consecutive frames.</p><h3 id="29d8349b-0e16-80a4-9bd7-f96046da425d" class="">2. Weights Video</h3><p id="29d8349b-0e16-8053-936e-c18b59007671" class="">This is a <em>confidence or clarity map</em> — it shows <strong>how much trust</strong> the algorithm places in each pixel’s motion measurement.</p><h3 id="29d8349b-0e16-8091-8a64-c34741489215" class="">🔍 What it represents</h3><ul id="29d8349b-0e16-80f7-ada2-d95a182efaf9" class="bulleted-list"><li style="list-style-type:disc">Water absorbs and scatters light — distant or hazy regions appear bluish, low-contrast, and unreliable for tracking motion.</li></ul><ul id="29d8349b-0e16-8073-a29f-e888ed78c758" class="bulleted-list"><li style="list-style-type:disc">The algorithm computes a <strong>transmission map</strong> or <strong>attenuation-aware weight</strong>:<ul id="29d8349b-0e16-808e-8659-eb69e80ca63e" class="bulleted-list"><li style="list-style-type:circle"><strong>Bright areas (white/yellow)</strong> → clear, nearby, well-lit regions (high confidence).</li></ul><ul id="29d8349b-0e16-8074-8840-df20f0be4a23" class="bulleted-list"><li style="list-style-type:circle"><strong>Dark areas (blue/black)</strong> → hazy, far, or low-light regions (low confidence).</li></ul></li></ul><ul id="29d8349b-0e16-80d0-a6ec-c43207fc6dc2" class="bulleted-list"><li style="list-style-type:disc">These weights are used internally to tell the optical flow system:<blockquote id="29d8349b-0e16-80db-80fe-f4231887f666" class="">“Trust the motion here more; down-weight that blurry region over there.”</blockquote></li></ul><h3 id="29d8349b-0e16-80fe-9bee-f7d566ccbd02" class="">💡 How to read it</h3><ul id="29d8349b-0e16-801b-9168-e2cec6d33972" class="bulleted-list"><li style="list-style-type:disc">Near objects (rocks, body parts, or camera rig) should appear bright → meaning good data.</li></ul><ul id="29d8349b-0e16-8028-adf3-cc462b33cace" class="bulleted-list"><li style="list-style-type:disc">Distant, murky, or low-light background will appear darker → low confidence.</li></ul><ul id="29d8349b-0e16-80e0-92bb-cb0e01befad8" class="bulleted-list"><li style="list-style-type:disc">If the whole frame is dark in the weights video, it means the water is too hazy or lighting is too poor for reliable motion detection at that moment.</li></ul><hr id="29d8349b-0e16-80cd-ab82-d112b8ba2bf2"/><h2 id="29d8349b-0e16-807d-b260-c3681b3d8190" class="">Results</h2><p id="29d8349b-0e16-80b4-b78b-ecadebdfccc8" class="">
+</p><figure id="29d8349b-0e16-8004-913a-e6d1cfce657a" class="image"><a href="Speed%20Estimation%20for%20Underwater%20Animals/image.png"><img style="width:709.9921875px" src="Speed%20Estimation%20for%20Underwater%20Animals/image.png"/></a></figure><h2 id="29d8349b-0e16-80ed-9e6e-ddf0ae02373a" class="">Applications of Optical Flow and Deep Learning Models</h2><p id="29d8349b-0e16-8037-a165-c8910c8038b3" class="">
+</p><h3 id="29d8349b-0e16-80eb-8030-dcab85028886" class="">Underwater Fish Detection</h3><figure id="29d8349b-0e16-8074-b389-c90f3680182f" class="image"><a href="Speed%20Estimation%20for%20Underwater%20Animals/image%201.png"><img style="width:2592px" src="Speed%20Estimation%20for%20Underwater%20Animals/image%201.png"/></a></figure><p id="29d8349b-0e16-805e-9670-eead729a7203" class="">
+</p><p id="29d8349b-0e16-8031-9fd9-e75a195d8900" class="">
+</p><h3 id="29d8349b-0e16-8059-9c2a-f884546a4d2c" class=""><strong>Navigation and Object Avoidance</strong></h3><figure id="29d8349b-0e16-80c2-9223-e9a612b866a7" class="image"><a href="Speed%20Estimation%20for%20Underwater%20Animals/image%202.png"><img style="width:709.9921875px" src="Speed%20Estimation%20for%20Underwater%20Animals/image%202.png"/></a></figure><p id="29d8349b-0e16-809b-828e-e4ed70b8fb07" class="">
+</p><figure id="29d8349b-0e16-80f5-9f0d-c055f77e72e9" class="image"><a href="Speed%20Estimation%20for%20Underwater%20Animals/image%203.png"><img style="width:709.9921875px" src="Speed%20Estimation%20for%20Underwater%20Animals/image%203.png"/></a></figure><p id="29d8349b-0e16-80d9-a683-f1dd63e0a64c" class="">
+</p><p id="29d8349b-0e16-8094-ab9a-f6c3617a8889" class="">
+</p><h2 id="29d8349b-0e16-80a8-9865-d28232e847eb" class="">Animals as Oceanographers Applications</h2><h3 id="29d8349b-0e16-80f4-918d-d6683e809842" class="">Particle Density Estimation (and Size)</h3><h3 id="29d8349b-0e16-80fe-a5a2-ffb4ea22a62b" class="">Water Clarity Estimation</h3><h3 id="29d8349b-0e16-8001-8b44-dedf69a94266" class="">Light Penetration </h3><p id="29d8349b-0e16-803a-913f-cd137122b62c" class="">
+</p><p id="29d8349b-0e16-8089-88c9-fe66d9700ae7" class="">
+</p><p id="29d8349b-0e16-80a1-a2e5-f1222f9088de" class="">
+</p><h1 id="29d8349b-0e16-8050-a405-da787f0d6bed" class=""></h1></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

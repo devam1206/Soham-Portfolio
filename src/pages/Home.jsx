@@ -19,7 +19,7 @@ export default function Home() {
           Soham Desai
         </h1>
         <p className="text-lg md:text-xl mt-4">
-        Wireless Systems Lead at <a href="https://www.skylo.tech/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-8 hover:text-gray-400">Skylo</a>
+        Wireless Systems Engineering at <a href="https://www.skylo.tech/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-8 hover:text-gray-400">Skylo</a>
         </p>
         <p className="text-lg md:text-xl text-gray-400 mt-4">
         Passionate Explorer of Extreme Environment Wireless Communications

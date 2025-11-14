@@ -1,0 +1,732 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Technique for quick positioning Of Underwater Animals when they surface </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="26b8349b-0e16-80be-a3c0-e4d268d6c4ae" class="page sans"><header><h1 class="page-title">Technique for quick positioning Of Underwater Animals when they surface </h1><p class="page-description"></p></header><div class="page-body"><p id="26b8349b-0e16-813f-8aed-cf1f14404f59" class="">
+</p><p id="26b8349b-0e16-81bf-9cab-e5d70f9d7676" class="">
+</p><p id="26b8349b-0e16-814c-a70b-d2af30df13eb" class=""><strong>Problem Statement</strong></p><p id="26b8349b-0e16-814a-bd76-f173dfdcca70" class="">Whales surface only briefly—typically 3–5 seconds—at irregular intervals (often ~30 seconds for a few minutes, then a multi-minute dive). This short exposure is insufficient for reliable GPS fixes, and tracking is further complicated by variable surfacing patterns across species, changing sea states, and long gaps with no visibility. A method is needed to accurately estimate whale positions and trajectories using minimal, intermittent observation data.</p><p id="26b8349b-0e16-810d-a4e7-d0d19e205e6b" class="">
+</p><p id="26b8349b-0e16-81a4-a636-cb00249b6ae9" class=""><strong>Solution Overview</strong></p><p id="26b8349b-0e16-81c4-9a74-c437b1d796fa" class="">Use marine radar to detect and measure each whale surfacing event, capturing range, bearing, and possibly Doppler. Instead of relying on a single observation for a full fix, apply <strong>pseudo-trilateration over time</strong>: combine multiple surfacing measurements from one or more radar-equipped platforms, fusing them with a motion model of whale behavior in a tracking filter (e.g., UKF/particle filter). Over successive detections, the system refines location estimates, and maintains continuous tracks despite long dive intervals. This approach enables accurate, non-invasive whale tracking which acts as a secondary method for location estimation when onboard GPS fails.</p><p id="2708349b-0e16-80e0-b547-c348c242134e" class="">
+</p><p id="26b8349b-0e16-81dd-b789-cb59e8621d90" class="">Create a local pseudo-GPS network using multiple transmitters on nearby hills, boats or drones and measure the signals from a receiver on the whales. These signals will be post processed to get a triangulation based location estimate. </p><p id="2708349b-0e16-8074-90ea-ebf92b7c3aff" class="">This will allow us to detect and measure each whale surfacing event, capturing range, bearing, and Doppler. Instead of relying on a single observation for a full fix, apply <strong>pseudo-trilateration over time</strong>: combine multiple surfacing measurements, fusing them with a motion model of whale behavior in a tracking filter (e.g., UKF/particle filter). Over successive detections, the system refines location estimates, and maintains continuous tracks despite long dive intervals. This approach enables accurate, non-invasive whale tracking which acts as a secondary method for location estimation when onboard GPS fails.</p><p id="26b8349b-0e16-813a-b630-fe340ded29cc" class="">
+</p><ul id="26b8349b-0e16-81dc-95bd-d8d577af5ffd" class="bulleted-list"><li style="list-style-type:disc"><strong>Target conference options for paper submission:</strong></li></ul><ol type="1" id="26b8349b-0e16-81ac-ac06-dfc39bbae40f" class="numbered-list" start="1"><li><a href="https://2026.ieee-radarconf.org/">https://2026.ieee-radarconf.org/</a></li></ol><p id="26b8349b-0e16-819b-a2be-e35f5a7c1913" class="">
+</p><ul id="26b8349b-0e16-8155-aec0-c1cae9b25876" class="bulleted-list"><li style="list-style-type:disc"><strong>Possible participation into:</strong></li></ul><p id="26b8349b-0e16-8156-9638-cdef45adb996" class=""><a href="https://2026.ieee-radarconf.org/authors/ieee-aess-radar-challenge-2026">https://2026.ieee-radarconf.org/authors/ieee-aess-radar-challenge-2026</a></p><p id="26b8349b-0e16-8176-b4f1-fe17a10506dd" class="">(Selected teams receive CN0566 Phases Array for testing!)</p><p id="26b8349b-0e16-81b6-8d11-e15e72e3ee2b" class=""><a href="https://www.analog.com/en/resources/reference-designs/circuits-from-the-lab/cn0566.html#rd-reference">https://www.analog.com/en/resources/reference-designs/circuits-from-the-lab/cn0566.html#rd-reference</a></p><p id="26b8349b-0e16-81ae-85d7-dd6f52518825" class="">
+</p><h1 id="26b8349b-0e16-8117-9fe6-c69f8bc45fd2" class="">Project Details and description:</h1><p id="26b8349b-0e16-8144-8b13-c92c487620e0" class="">
+</p><ul id="26b8349b-0e16-8131-a5fb-eba8e8516726" class="bulleted-list"><li style="list-style-type:disc"><strong>CATS Tag</strong></li></ul><figure id="26b8349b-0e16-8178-8155-ddfd54be3f78" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image.png"><img style="width:709.9921875px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image.png"/></a></figure><figure id="26b8349b-0e16-8164-9026-d432ce62fbd6" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%201.png"><img style="width:709.9921875px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%201.png"/></a></figure><p id="26b8349b-0e16-8172-85e6-f1faa637ba85" class="">
+</p><figure id="26b8349b-0e16-8179-9da0-d58343e85dc2"><div class="source"><a href="https://drive.google.com/file/d/1O1XSx1eS6Texe-xWFr8Qlnx9qW52LsGf/view?usp=sharing">https://drive.google.com/file/d/1O1XSx1eS6Texe-xWFr8Qlnx9qW52LsGf/view?usp=sharing</a></div></figure><p id="26b8349b-0e16-8117-97b2-d60c006cb57e" class="">
+</p><p id="26b8349b-0e16-81df-80a4-c61901ebc17e" class="">
+</p><p id="26b8349b-0e16-817c-919c-fd5025990091" class="">
+</p><h2 id="26b8349b-0e16-8184-a1b7-da6a384b7b20" class="">Blue Whale Dataset:</h2><ul id="26b8349b-0e16-810a-a445-e87141ceb2d2" class="bulleted-list"><li style="list-style-type:disc">Overview:<p id="26b8349b-0e16-8112-a2d9-e5048f780b1d" class="">
+</p><figure id="26b8349b-0e16-813c-a75d-cb81f4eecfee" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/_bw180827-53Quicklook.jpg"><img style="width:1056px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/_bw180827-53Quicklook.jpg"/></a></figure><p id="26b8349b-0e16-8141-a4e0-edef1b4b1cfa" class="">
+</p></li></ul><ul id="26b8349b-0e16-81f6-85a0-fc1a956fc1b2" class="bulleted-list"><li style="list-style-type:disc">Sensor Data from CATS Tags:</li></ul><p id="26b8349b-0e16-8199-9950-d2ff5f1a16e9" class="">
+</p><figure id="26b8349b-0e16-81a7-a4cb-deba65450cd2" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%202.png"><img style="width:709.984375px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%202.png"/></a></figure><figure id="26b8349b-0e16-819e-937c-d144dc7128d3" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%203.png"><img style="width:710px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%203.png"/></a></figure><p id="26b8349b-0e16-811a-a2d9-db6ceef0be5c" class="">
+</p><h3 id="26b8349b-0e16-81bc-bfbc-da3322714d67" class="">Further Analysis of Depth and Surfacing </h3><p id="26b8349b-0e16-8121-a8cc-f7b5f7adc039" class="">
+</p><figure id="26b8349b-0e16-814a-b652-c1b2b594fe79" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%204.png"><img style="width:709.984375px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%204.png"/></a></figure><p id="26b8349b-0e16-816a-b9e9-dd1359ecc89d" class="">
+</p><ul id="26b8349b-0e16-8157-b3a9-cdedd4e5ca5d" class="bulleted-list"><li style="list-style-type:disc"><strong>Depth statistics:</strong></li></ul><p id="26b8349b-0e16-81db-ba00-fbb255c7b0ab" class=""><br/>Min depth: -0.98 (~1 m above surface)<br/>Max depth: 254.93<br/>Mean depth: 81.02</p><p id="26b8349b-0e16-810e-82b4-e5bcebd23ea5" class="">Surfacing events (depth &lt; 0.7 m):  19049 out of 116135 total records<br/>Percentage of time at surface: 16.40%</p><p id="26b8349b-0e16-8107-9655-ed3d7aa72c25" class="">
+</p><ul id="26b8349b-0e16-81a5-ae13-ceb44c3aeda7" class="bulleted-list"><li style="list-style-type:disc"><strong>Surfacing Analysis</strong></li></ul><p id="26b8349b-0e16-81d9-8e48-df919035a81c" class=""><strong><span style="border-bottom:0.05em solid">Cycle 1:</span></strong><span style="border-bottom:0.05em solid"><br/></span>Start: 2018-08-27 13:00:48.200000<br/>Duration: 10.5 minutes<br/>Number of surfacings: 12<br/>Surfacing durations: [&#x27;7.6s&#x27;, &#x27;7.8s&#x27;, &#x27;7.8s&#x27;, &#x27;7.6s&#x27;, &#x27;7.0s&#x27;, &#x27;6.4s&#x27;, &#x27;6.0s&#x27;, &#x27;7.6s&#x27;, &#x27;8.5s&#x27;, &#x27;8.4s&#x27;, &#x27;7.7s&#x27;, &#x27;6.8s&#x27;]<br/>Intervals between surfacings: [&#x27;9.6s&#x27;, &#x27;17.2s&#x27;, &#x27;11.8s&#x27;, &#x27;159.5s&#x27;, &#x27;8.7s&#x27;, &#x27;270.2s&#x27;, &#x27;11.3s&#x27;, &#x27;13.5s&#x27;, &#x27;11.5s&#x27;, &#x27;19.3s&#x27;, &#x27;10.3s&#x27;]<br/>Mean surfacing duration: 7.4 seconds<br/>Mean interval between surfacings: 49.4 seconds<br/>Time since previous cycle: N/A (first cycle)</p><p id="26b8349b-0e16-81e6-bb55-c441729ed60b" class=""><strong><span style="border-bottom:0.05em solid">Cycle 2:</span></strong><strong><br/></strong>Start: 2018-08-27 13:26:25.700000<br/>Duration: 1.9 minutes<br/>Number of surfacings: 10<br/>Surfacing durations: [&#x27;5.8s&#x27;, &#x27;6.8s&#x27;, &#x27;8.1s&#x27;, &#x27;7.0s&#x27;, &#x27;7.2s&#x27;, &#x27;9.2s&#x27;, &#x27;0.3s&#x27;, &#x27;0.8s&#x27;, &#x27;0.6s&#x27;, &#x27;18.4s&#x27;]<br/>Intervals between surfacings: [&#x27;10.0s&#x27;, &#x27;5.7s&#x27;, &#x27;6.0s&#x27;, &#x27;15.2s&#x27;, &#x27;9.8s&#x27;, &#x27;0.2s&#x27;, &#x27;0.1s&#x27;, &#x27;0.1s&#x27;, &#x27;2.7s&#x27;]<br/>Mean surfacing duration: 6.4 seconds<br/>Mean interval between surfacings: 5.5 seconds<br/>Time since previous cycle: 15.1 minutes</p><p id="26b8349b-0e16-8181-9618-d16ee2d85c3a" class=""><strong><span style="border-bottom:0.05em solid">Cycle 3:</span></strong><br/>Start: 2018-08-27 13:36:42.900000<br/>Duration: 0.9 minutes<br/>Number of surfacings: 4<br/>Surfacing durations: [&#x27;6.2s&#x27;, &#x27;7.7s&#x27;, &#x27;9.2s&#x27;, &#x27;8.2s&#x27;]<br/>Intervals between surfacings: [&#x27;12.5s&#x27;, &#x27;10.9s&#x27;, &#x27;0.3s&#x27;]<br/>Mean surfacing duration: 7.8 seconds<br/>Mean interval between surfacings: 7.9 seconds<br/>Time since previous cycle: 8.4 minutes</p><p id="26b8349b-0e16-810a-8196-e53ea6b48568" class="">
+</p><ul id="26b8349b-0e16-81e5-b476-d229be514a33" class="bulleted-list"><li style="list-style-type:disc"><strong>Distance covered analysis</strong></li></ul><p id="26b8349b-0e16-8107-bf55-fafb7cfa7126" class="">
+</p><figure id="26b8349b-0e16-81ab-ba5b-c274af62b093" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%205.png"><img style="width:709.984375px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%205.png"/></a></figure><p id="26b8349b-0e16-81f7-9c3d-ed2516dde126" class="">
+</p><p id="26b8349b-0e16-8145-b8e7-ded52d4935f1" class="">
+</p><figure id="26b8349b-0e16-812b-b848-f8b7c4bed48c" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%206.png"><img style="width:709.984375px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%206.png"/></a></figure><figure id="26b8349b-0e16-81a1-846e-f7239d90a618" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%207.png"><img style="width:709.984375px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%207.png"/></a></figure><figure id="26b8349b-0e16-81c8-936f-e418a34f21c3" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%208.png"><img style="width:709.96875px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/image%208.png"/></a></figure><p id="26b8349b-0e16-81bb-8b35-fd4ba836c932" class="">
+</p><p id="26b8349b-0e16-8151-b6d5-cb9a6a8546e4" class="">
+</p><p id="26b8349b-0e16-817a-aa14-e9213f48590e" class="">Current GPS data from a test:</p><p id="26b8349b-0e16-812d-8e72-e0e9d186b17f" class="">
+</p><figure id="26b8349b-0e16-81bd-9492-ff87e18306c6" class="image"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/Figure_1.png"><img style="width:709.984375px" src="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/Figure_1.png"/></a></figure><figure id="26b8349b-0e16-8124-bc9a-f8763dcbc58f"><div class="source"><a href="Technique%20for%20quick%20positioning%20Of%20Underwater%20Anim/Figure_1.pdf">Figure_1.pdf</a></div></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

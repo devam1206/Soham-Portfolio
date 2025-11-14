@@ -7,6 +7,9 @@ import Projects from "./pages/Projects";
 import CV from "./pages/cv";
 import Contact from "./pages/Contact";
 import Publications from "./pages/Publications";
+import WhaleSpeedEstimation from "./pages/WhaleSpeedEstimation";
+import WhaleLocationEstimation from "./pages/WhaleLocationEstimation";
+import UnderwaterMIMO from "./pages/UnderwaterMIMO";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -20,6 +23,9 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/whale-speed-estimation" element={<WhaleSpeedEstimation />} />
+            <Route path="/projects/whale-location-estimation" element={<WhaleLocationEstimation />} />
+            <Route path="/projects/underwater-mimo" element={<UnderwaterMIMO />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/publications" element={<Publications />} />
