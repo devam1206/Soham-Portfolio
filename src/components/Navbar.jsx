@@ -1,13 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Command, Link as LinkIcon, Mail, Code, Home, User, FileText, Briefcase, BookOpen } from "lucide-react";
+import { Command, Link as LinkIcon, Mail, Code, Home, User, Briefcase, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const navItems = [
   { name: "About", path: "/about" },
   { name: "Projects", path: "/projects" },
   { name: "Publications", path: "/publications" },
-  { name: "CV", path: "/cv"},
-  { name: "Contact", path: "/contact"},
+  { name: "Contact", path: "/contact" },
 ];
 
 const Popup = ({ showPopup, popupRef, onClose }) => {
@@ -51,7 +50,7 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
     { icon: <User className="w-5 h-5 mr-3" />, label: 'About', path: '/about' },
     { icon: <Briefcase className="w-5 h-5 mr-3" />, label: 'Projects', path: '/projects' },
     { icon: <BookOpen className="w-5 h-5 mr-3" />, label: 'Publications', path: '/publications' },
-    { icon: <FileText className="w-5 h-5 mr-3" />, label: 'CV', path: '/cv' }
+    { icon: <Mail className="w-5 h-5 mr-3" />, label: 'Contact', path: '/contact' }
   ];
 
   const filteredGeneralItems = generalItems.filter(item =>
