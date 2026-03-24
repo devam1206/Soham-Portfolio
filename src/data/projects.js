@@ -1,3 +1,4 @@
+/** Optional `githubHref` — add a public repo URL to show a GitHub link next to Notion. */
 export const projects = [
   {
     id: 1,
@@ -18,6 +19,7 @@ export const projects = [
     href: "https://www.notion.so/Underwater-Robotic-Swarms-3288349b0e168034950bc2f5425668fe?source=copy_link",
     format: "Notion Book",
     linkLabel: "Open Notion Book",
+    paperHref: "https://www.sciencedirect.com/science/article/abs/pii/S1389128620300165",
   },
   {
     id: 2,
@@ -38,6 +40,7 @@ export const projects = [
     href: "https://www.notion.so/LEO-Satellites-for-Positioning-PNT-3288349b0e16809ab3dee1eee692a68e?source=copy_link",
     format: "Notion Book",
     linkLabel: "Open Notion Book",
+    githubHref: "https://github.com/soham12112/differential_doppler_iridium",
   },
   {
     id: 3,
@@ -78,6 +81,7 @@ export const projects = [
     href: "https://www.notion.so/AI-Driven-Vision-Sensor-Fusion-for-Underwater-Environments-3288349b0e1680228846fea6cce3846b?source=copy_link",
     format: "Notion Book",
     linkLabel: "Open Notion Book",
+    githubHref: "https://github.com/soham12112/whale_speed",
   },
   {
     id: 5,
@@ -97,6 +101,7 @@ export const projects = [
     href: "https://www.notion.so/Semantic-Video-Transfer-for-Low-Bandwidth-Underwater-Acoustics-3288349b0e1680618269f7abad2a4c9e?source=copy_link",
     format: "Notion Book",
     linkLabel: "Open Notion Book",
+    githubHref: "https://github.com/soham12112/Semantic_Underwater_communication_Receiver",
   },
   {
     id: 6,
@@ -115,6 +120,7 @@ export const projects = [
       "/images/projects/whale-depth/depth-analysis.png",
     ],
     href: "https://www.notion.so/Whale-Position-and-Depth-Analysis-3288349b0e1680b7ae1ac85c7e35a3af?source=copy_link",
+    format: "Notion Book",
     linkLabel: "Open Notion Book",
   },
 ];

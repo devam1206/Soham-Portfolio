@@ -5,27 +5,27 @@ export default function WhaleLocationEstimation() {
   const navigate = useNavigate();
 
   return (
-    <div className="py-10 px-4 md:px-8 bg-[#0a0a0a] min-h-screen">
+    <div className="py-10 md:py-14 px-4 md:px-8">
       <div className="max-w-5xl mx-auto">
         {/* Back Button */}
         <button
           onClick={() => navigate("/projects")}
-          className="mb-6 text-blue-400 hover:text-blue-300 flex items-center gap-2 transition-colors"
+          className="mb-6 text-accent hover:text-accent-hover flex items-center gap-2 transition-colors"
         >
           ← Back to Projects
         </button>
 
         {/* Title */}
-        <h1 className="text-4xl md:text-5xl font-bold mb-4 text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text">
+        <h1 className="font-display text-3xl md:text-5xl font-semibold text-foreground border-l-2 border-accent pl-4 mb-6 leading-tight">
           Technique for Quick Positioning of Underwater Animals When They Surface
         </h1>
 
-        <hr className="border-slate-700 mb-8" />
+        <hr className="border-border mb-8" />
 
         {/* Problem Statement */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-4">Problem Statement</h2>
-          <p className="text-slate-300 mb-6 leading-relaxed">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Problem Statement</h2>
+          <p className="text-muted mb-6 leading-relaxed">
             Whales surface only briefly—typically 3–5 seconds—at irregular intervals (often ~30 seconds for 
             a few minutes, then a multi-minute dive). This short exposure is insufficient for reliable GPS fixes, 
             and tracking is further complicated by variable surfacing patterns across species, changing sea states, 
@@ -34,12 +34,12 @@ export default function WhaleLocationEstimation() {
           </p>
         </section>
 
-        <hr className="border-slate-700 mb-8" />
+        <hr className="border-border mb-8" />
 
         {/* Solution Overview */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-4">Solution Overview</h2>
-          <p className="text-slate-300 mb-6 leading-relaxed">
+          <h2 className="text-3xl font-bold text-foreground mb-4">Solution Overview</h2>
+          <p className="text-muted mb-6 leading-relaxed">
             Use marine radar to detect and measure each whale surfacing event, capturing range, bearing, and 
             possibly Doppler. Instead of relying on a single observation for a full fix, apply{" "}
             <strong>pseudo-trilateration over time</strong>: combine multiple surfacing measurements from one 
@@ -50,13 +50,13 @@ export default function WhaleLocationEstimation() {
             GPS fails.
           </p>
 
-          <p className="text-slate-300 mb-6 leading-relaxed">
+          <p className="text-muted mb-6 leading-relaxed">
             Create a local pseudo-GPS network using multiple transmitters on nearby hills, boats or drones and 
             measure the signals from a receiver on the whales. These signals will be post processed to get a 
             triangulation based location estimate.
           </p>
 
-          <p className="text-slate-300 mb-6 leading-relaxed">
+          <p className="text-muted mb-6 leading-relaxed">
             This will allow us to detect and measure each whale surfacing event, capturing range, bearing, and 
             Doppler. Instead of relying on a single observation for a full fix, apply{" "}
             <strong>pseudo-trilateration over time</strong>: combine multiple surfacing measurements, fusing 
@@ -69,10 +69,10 @@ export default function WhaleLocationEstimation() {
 
         {/* Project Details */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Project Details and Description</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6">Project Details and Description</h2>
 
-          <h3 className="text-2xl font-semibold text-white mb-4">CATS Tag</h3>
-          <p className="text-slate-300 mb-6 leading-relaxed">
+          <h3 className="text-2xl font-semibold text-foreground mb-4">CATS Tag</h3>
+          <p className="text-muted mb-6 leading-relaxed">
             The CATS (Customizable Animal Tracking Solutions) tag is a multi-sensor data logger that records 
             high-resolution movement, behavior, and environmental data from marine animals.
           </p>
@@ -91,20 +91,20 @@ export default function WhaleLocationEstimation() {
           </div>
         </section>
 
-        <hr className="border-slate-700 mb-8" />
+        <hr className="border-border mb-8" />
 
         {/* Blue Whale Dataset */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Blue Whale Dataset</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6">Blue Whale Dataset</h2>
 
-          <h3 className="text-2xl font-semibold text-white mb-4">Overview</h3>
+          <h3 className="text-2xl font-semibold text-foreground mb-4">Overview</h3>
           <img
             src="/images/projects/whale-location/_bw180827-53Quicklook.jpg"
             alt="Blue Whale Dataset Overview"
             className="w-full rounded-lg shadow-lg mb-8"
           />
 
-          <h3 className="text-2xl font-semibold text-white mb-4">Sensor Data from CATS Tags</h3>
+          <h3 className="text-2xl font-semibold text-foreground mb-4">Sensor Data from CATS Tags</h3>
           <div className="flex flex-col gap-6 mb-8">
             <img
               src="/images/projects/whale-location/image 2.png"
@@ -119,11 +119,11 @@ export default function WhaleLocationEstimation() {
           </div>
         </section>
 
-        <hr className="border-slate-700 mb-8" />
+        <hr className="border-border mb-8" />
 
         {/* Depth and Surfacing Analysis */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Further Analysis of Depth and Surfacing</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6">Further Analysis of Depth and Surfacing</h2>
 
           <img
             src="/images/projects/whale-location/image 4.png"
@@ -131,9 +131,9 @@ export default function WhaleLocationEstimation() {
             className="w-full rounded-lg shadow-lg mb-8"
           />
 
-          <h3 className="text-2xl font-semibold text-white mb-4">Depth Statistics</h3>
-          <div className="bg-slate-900 p-6 rounded-lg mb-6">
-            <ul className="text-slate-300 space-y-2">
+          <h3 className="text-2xl font-semibold text-foreground mb-4">Depth Statistics</h3>
+          <div className="bg-surface p-6 rounded-lg mb-6">
+            <ul className="text-muted space-y-2">
               <li><strong>Min depth:</strong> -0.98 m (~1 m above surface)</li>
               <li><strong>Max depth:</strong> 254.93 m</li>
               <li><strong>Mean depth:</strong> 81.02 m</li>
@@ -142,12 +142,12 @@ export default function WhaleLocationEstimation() {
             </ul>
           </div>
 
-          <h3 className="text-2xl font-semibold text-white mb-4">Surfacing Analysis</h3>
+          <h3 className="text-2xl font-semibold text-foreground mb-4">Surfacing Analysis</h3>
           
           <div className="space-y-6 mb-8">
-            <div className="bg-slate-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold text-white mb-3 border-b border-slate-600 pb-2">Cycle 1</h4>
-              <ul className="text-slate-300 space-y-2">
+            <div className="bg-surface-elevated p-6 rounded-lg">
+              <h4 className="text-xl font-semibold text-foreground mb-3 border-b border-border pb-2">Cycle 1</h4>
+              <ul className="text-muted space-y-2">
                 <li><strong>Start:</strong> 2018-08-27 13:00:48</li>
                 <li><strong>Duration:</strong> 10.5 minutes</li>
                 <li><strong>Number of surfacings:</strong> 12</li>
@@ -157,9 +157,9 @@ export default function WhaleLocationEstimation() {
               </ul>
             </div>
 
-            <div className="bg-slate-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold text-white mb-3 border-b border-slate-600 pb-2">Cycle 2</h4>
-              <ul className="text-slate-300 space-y-2">
+            <div className="bg-surface-elevated p-6 rounded-lg">
+              <h4 className="text-xl font-semibold text-foreground mb-3 border-b border-border pb-2">Cycle 2</h4>
+              <ul className="text-muted space-y-2">
                 <li><strong>Start:</strong> 2018-08-27 13:26:25</li>
                 <li><strong>Duration:</strong> 1.9 minutes</li>
                 <li><strong>Number of surfacings:</strong> 10</li>
@@ -169,9 +169,9 @@ export default function WhaleLocationEstimation() {
               </ul>
             </div>
 
-            <div className="bg-slate-800 p-6 rounded-lg">
-              <h4 className="text-xl font-semibold text-white mb-3 border-b border-slate-600 pb-2">Cycle 3</h4>
-              <ul className="text-slate-300 space-y-2">
+            <div className="bg-surface-elevated p-6 rounded-lg">
+              <h4 className="text-xl font-semibold text-foreground mb-3 border-b border-border pb-2">Cycle 3</h4>
+              <ul className="text-muted space-y-2">
                 <li><strong>Start:</strong> 2018-08-27 13:36:42</li>
                 <li><strong>Duration:</strong> 0.9 minutes</li>
                 <li><strong>Number of surfacings:</strong> 4</li>
@@ -183,11 +183,11 @@ export default function WhaleLocationEstimation() {
           </div>
         </section>
 
-        <hr className="border-slate-700 mb-8" />
+        <hr className="border-border mb-8" />
 
         {/* Distance Covered Analysis */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Distance Covered Analysis</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6">Distance Covered Analysis</h2>
           
           <div className="flex flex-col gap-6 mb-8">
             <img
@@ -213,17 +213,17 @@ export default function WhaleLocationEstimation() {
           </div>
         </section>
 
-        <hr className="border-slate-700 mb-8" />
+        <hr className="border-border mb-8" />
 
         {/* GPS Data */}
         <section className="mb-12">
-          <h2 className="text-3xl font-bold text-white mb-6">Current GPS Data from a Test</h2>
+          <h2 className="text-3xl font-bold text-foreground mb-6">Current GPS Data from a Test</h2>
           <img
             src="/images/projects/whale-location/Figure_1.png"
             alt="GPS Data Test Results"
             className="w-full rounded-lg shadow-lg mb-8"
           />
-          <p className="text-slate-300 leading-relaxed">
+          <p className="text-muted leading-relaxed">
             The figure above shows the current GPS tracking data collected during field tests. The gaps and 
             inconsistencies in the data highlight the challenges of relying solely on GPS for tracking marine 
             animals that spend most of their time underwater.
@@ -233,7 +233,7 @@ export default function WhaleLocationEstimation() {
         {/* Back Button */}
         <button
           onClick={() => navigate("/projects")}
-          className="mt-8 text-blue-400 hover:text-blue-300 flex items-center gap-2 transition-colors"
+          className="mt-8 text-accent hover:text-accent-hover flex items-center gap-2 transition-colors"
         >
           ← Back to Projects
         </button>

@@ -1,4 +1,15 @@
-import React from 'react';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+
+const fade = {
+  hidden: { opacity: 0, y: 20 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" },
+  }),
+};
 
 const publications = [
   {
@@ -42,75 +53,114 @@ const patentApplications = [
   "Managing a User Equipment Connection to a Wireless Network",
 ];
 
+const pageTitleClass =
+  "font-display text-3xl md:text-4xl font-semibold text-foreground border-l-2 border-accent pl-4";
+
 export default function Publications() {
   return (
-    <div className="max-w-6xl mx-auto py-10 px-4 md:px-8">
-      <h1 className="text-3xl md:text-4xl font-bold mb-8 text-transparent bg-gradient-to-r from-red-400 via-purple-500 to-indigo-500 bg-clip-text">Publications.</h1>
-      <p className="mb-8 text-lg text-slate-400">
-        Check out my Google Scholar profile for more details:
-        <a href="https://scholar.google.com/citations?user=aT7kdMMAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline ml-2">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+      className="max-w-6xl mx-auto py-10 md:py-14 px-4 md:px-8"
+    >
+      <Helmet>
+        <title>Patents &amp; Papers — Soham Desai</title>
+        <meta name="description" content="Soham Desai's published research and patents in satellite communications, underwater MIMO, 5G mmWave, and wireless positioning." />
+      </Helmet>
+
+      <motion.h1 variants={fade} className={`${pageTitleClass} mb-6`}>Patents &amp; Papers</motion.h1>
+      <motion.p variants={fade} className="mb-10 text-lg text-muted max-w-prose leading-relaxed">
+        For the full list and citations, see{" "}
+        <a
+          href="https://scholar.google.com/citations?user=aT7kdMMAAAAJ&hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-accent hover:text-accent-hover underline underline-offset-4"
+        >
           Google Scholar
         </a>
-      </p>
+        .
+      </motion.p>
 
-      {/* Journals and Conferences */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold text-white mb-6">Journals and Conferences</h2>
-        <div className="space-y-6">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
+        className="mb-14"
+      >
+        <motion.h2 variants={fade} className="font-display text-2xl font-semibold text-foreground mb-6">
+          Journals and conferences
+        </motion.h2>
+        <div className="space-y-5">
           {publications.map((publication) => (
-            <div key={publication.title} className="bg-slate-800 p-6 rounded-lg">
-              <h3 className="text-xl text-white mb-2">
+            <motion.article
+              key={publication.title}
+              variants={fade}
+              className="bg-surface p-6 rounded-lg border border-border"
+            >
+              <h3 className="text-lg text-foreground font-medium mb-2 leading-snug">
                 <a
                   href={publication.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-blue-400"
+                  className="hover:text-accent transition-colors"
                 >
                   {publication.title}
                 </a>
               </h3>
-              {publication.venue && (
-                <p className="text-slate-400">{publication.venue}</p>
-              )}
-              {publication.note && (
-                <p className="text-slate-500 mt-2">{publication.note}</p>
-              )}
-            </div>
+              {publication.venue && <p className="text-muted-foreground text-sm">{publication.venue}</p>}
+              {publication.note && <p className="text-muted-foreground/80 text-sm mt-2">{publication.note}</p>}
+            </motion.article>
           ))}
         </div>
-      </div>
+      </motion.div>
 
-      {/* Patents */}
-      <div>
-        <h2 className="text-2xl font-bold text-white mb-6">Patents</h2>
-        <p className="text-slate-400 mb-6">
-          Updated from the current public inventor listing on{' '}
-          <a href="https://patents.justia.com/inventor/soham-dhiren-desai" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-40px" }}
+        variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+      >
+        <motion.h2 variants={fade} className="font-display text-2xl font-semibold text-foreground mb-4">
+          Patents
+        </motion.h2>
+        <motion.p variants={fade} className="text-muted mb-8 max-w-prose leading-relaxed text-sm md:text-base">
+          Updated from the public inventor listing on{" "}
+          <a
+            href="https://patents.justia.com/inventor/soham-dhiren-desai"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:text-accent-hover underline underline-offset-4"
+          >
             Justia Patents
           </a>
-          . Open the inventor page for the latest patent numbers, dates, and full abstracts.
-        </p>
-        
-        {/* Granted Patents */}
-        <h3 className="text-xl font-semibold text-purple-400 mb-4">Granted Patents</h3>
-        <div className="space-y-6 mb-8">
+          . Open the inventor page for numbers, dates, and abstracts.
+        </motion.p>
+
+        <motion.h3 variants={fade} className="text-lg font-semibold text-foreground mb-4">Granted</motion.h3>
+        <div className="space-y-4 mb-10">
           {grantedPatents.map((patent) => (
-            <div key={patent} className="bg-slate-800 p-6 rounded-lg border-l-4 border-green-500">
-              <h3 className="text-xl text-white mb-2">{patent}</h3>
-            </div>
+            <motion.div
+              key={patent}
+              variants={fade}
+              className="bg-surface p-5 rounded-lg border-l-2 border-accent border border-border pl-5"
+            >
+              <p className="text-foreground text-base leading-snug">{patent}</p>
+            </motion.div>
           ))}
         </div>
 
-        {/* Patent Applications */}
-        <h3 className="text-xl font-semibold text-purple-400 mb-4">Patent Applications</h3>
-        <div className="space-y-6">
+        <motion.h3 variants={fade} className="text-lg font-semibold text-foreground mb-4">Applications</motion.h3>
+        <div className="space-y-4">
           {patentApplications.map((application) => (
-            <div key={application} className="bg-slate-800 p-6 rounded-lg">
-              <h3 className="text-xl text-white mb-2">{application}</h3>
-            </div>
+            <motion.div key={application} variants={fade} className="bg-surface p-5 rounded-lg border border-border">
+              <p className="text-foreground text-base leading-snug">{application}</p>
+            </motion.div>
           ))}
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }

@@ -1,19 +1,27 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Command, Link as LinkIcon, Mail, Code, Home, User, Briefcase, BookOpen } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Command, Link as LinkIcon, Mail, Code, User, GraduationCap, Briefcase, BookOpen } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 
 const navItems = [
-  { name: "About", path: "/about" },
+  { name: "About me", path: "/" },
+  { name: "Education & Experience", path: "/education-experience" },
   { name: "Projects", path: "/projects" },
-  { name: "Publications", path: "/publications" },
+  { name: "Patents & Papers", path: "/publications" },
   { name: "Contact", path: "/contact" },
 ];
 
+const navLinkClass = ({ isActive }) =>
+  `text-sm tracking-wide px-3 py-1.5 rounded-md transition-colors duration-200 ${
+    isActive
+      ? "text-foreground bg-surface border border-border"
+      : "text-muted-foreground hover:text-foreground hover:bg-surface/80"
+  }`;
+
 const Popup = ({ showPopup, popupRef, onClose }) => {
   const inputRef = useRef(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(-1);
-  const [copyNotification, setCopyNotification] = useState(false); // State for the notification
+  const [copyNotification, setCopyNotification] = useState(false);
 
   useEffect(() => {
     if (showPopup && inputRef.current) {
@@ -27,52 +35,54 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
   }, [searchQuery]);
 
   const handleOptionClick = (action, path) => {
-    if (action === 'copyLink') {
-      navigator.clipboard.writeText('https://soham-desai.vercel.app/');
-      setCopyNotification(true); // Show the notification
-      setTimeout(() => setCopyNotification(false), 5000); // Hide after 5 seconds
-    } else if (action === 'viewSource') {
-      window.open('https://github.com/devam1206/Soham-Portfolio', '_blank');
+    if (action === "copyLink") {
+      navigator.clipboard.writeText("https://soham-desai.vercel.app/");
+      setCopyNotification(true);
+      setTimeout(() => setCopyNotification(false), 5000);
+    } else if (action === "viewSource") {
+      window.open("https://github.com/devam1206/Soham-Portfolio", "_blank");
     } else if (path) {
-      window.location.href = path; // Navigate to the specified path
+      window.location.href = path;
     }
     onClose();
   };
 
   const generalItems = [
-    { icon: <LinkIcon className="w-5 h-5 mr-3" />, label: 'Copy Link', action: 'copyLink' },
-    { icon: <Mail className="w-5 h-5 mr-3" />, label: 'Send Email', path:'/contact' },
-    { icon: <Code className="w-5 h-5 mr-3" />, label: 'View Source', action: 'viewSource' }
+    { icon: <LinkIcon className="w-5 h-5 mr-3 shrink-0" />, label: "Copy link", action: "copyLink" },
+    { icon: <Mail className="w-5 h-5 mr-3 shrink-0" />, label: "Send email", path: "/contact" },
+    { icon: <Code className="w-5 h-5 mr-3 shrink-0" />, label: "View source", action: "viewSource" },
   ];
 
   const navigationItems = [
-    { icon: <Home className="w-5 h-5 mr-3" />, label: 'Home', path: '/' },
-    { icon: <User className="w-5 h-5 mr-3" />, label: 'About', path: '/about' },
-    { icon: <Briefcase className="w-5 h-5 mr-3" />, label: 'Projects', path: '/projects' },
-    { icon: <BookOpen className="w-5 h-5 mr-3" />, label: 'Publications', path: '/publications' },
-    { icon: <Mail className="w-5 h-5 mr-3" />, label: 'Contact', path: '/contact' }
+    { icon: <User className="w-5 h-5 mr-3 shrink-0" />, label: "About me", path: "/" },
+    {
+      icon: <GraduationCap className="w-5 h-5 mr-3 shrink-0" />,
+      label: "Education & Experience",
+      path: "/education-experience",
+    },
+    { icon: <Briefcase className="w-5 h-5 mr-3 shrink-0" />, label: "Projects", path: "/projects" },
+    { icon: <BookOpen className="w-5 h-5 mr-3 shrink-0" />, label: "Patents & Papers", path: "/publications" },
+    { icon: <Mail className="w-5 h-5 mr-3 shrink-0" />, label: "Contact", path: "/contact" },
   ];
 
-  const filteredGeneralItems = generalItems.filter(item =>
+  const filteredGeneralItems = generalItems.filter((item) =>
     item.label.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const filteredNavigationItems = navigationItems.filter(item =>
+  const filteredNavigationItems = navigationItems.filter((item) =>
     item.label.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   const allFilteredItems = [...filteredGeneralItems, ...filteredNavigationItems];
 
   const handleKeyDown = (e) => {
-    if (e.key === 'ArrowDown') {
+    if (e.key === "ArrowDown") {
       e.preventDefault();
-      setSelectedIndex(prev => 
-        prev < allFilteredItems.length - 1 ? prev + 1 : prev
-      );
-    } else if (e.key === 'ArrowUp') {
+      setSelectedIndex((prev) => (prev < allFilteredItems.length - 1 ? prev + 1 : prev));
+    } else if (e.key === "ArrowUp") {
       e.preventDefault();
-      setSelectedIndex(prev => prev > -1 ? prev - 1 : prev);
-    } else if (e.key === 'Enter' && selectedIndex !== -1) {
+      setSelectedIndex((prev) => (prev > -1 ? prev - 1 : prev));
+    } else if (e.key === "Enter" && selectedIndex !== -1) {
       e.preventDefault();
       const selectedItem = allFilteredItems[selectedIndex];
       if (selectedItem.action) {
@@ -86,35 +96,37 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
 
   return (
     <>
-      <div className={`fixed inset-0 flex items-center justify-center ${showPopup ? 'block' : 'hidden'}`}>
-        <div className="fixed inset-0 bg-black opacity-50"></div>
+      <div className={`fixed inset-0 flex items-center justify-center z-[9998] ${showPopup ? "block" : "hidden"}`}>
+        <div className="fixed inset-0 bg-black/50 backdrop-blur-[2px]" aria-hidden="true" />
         <div
           ref={popupRef}
-          className="bg-gray-800 text-white rounded-lg shadow-lg w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-[9999] backdrop-filter backdrop-blur-md flex flex-col"
+          className="relative bg-surface text-foreground rounded-lg border border-border shadow-xl w-11/12 sm:w-3/4 md:w-1/3 h-2/3 z-[9999] flex flex-col overflow-hidden"
         >
-          <div className="p-4 border-b border-gray-700">
-            <input 
+          <div className="p-4 border-b border-border">
+            <input
               ref={inputRef}
-              type="text" 
-              placeholder="Type a command or search..." 
-              className="w-full p-3 bg-gray-900 text-white rounded-md focus:outline-none focus:ring-1 focus:ring-gray-600 text-base" 
+              type="text"
+              placeholder="Search commands…"
+              className="w-full p-3 bg-background text-foreground rounded-md border border-border focus:outline-none focus:ring-1 focus:ring-accent text-base placeholder:text-muted-foreground"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyDown={handleKeyDown}
             />
           </div>
-          <div className="px-4 py-2 overflow-y-auto flex-1">
+          <div className="px-2 py-2 overflow-y-auto flex-1">
             {filteredGeneralItems.length > 0 && (
               <>
-                <h3 className="text-base font-semibold text-gray-400 px-4">GENERAL</h3>
-                <ul className="py-2">
+                <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-4 pt-1">
+                  General
+                </h3>
+                <ul className="py-1">
                   {filteredGeneralItems.map((item, index) => (
                     <li
                       key={index}
-                      className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
-                        selectedIndex === index ? 'bg-gray-700' : ''
+                      className={`flex items-center px-4 py-2.5 text-base rounded-md cursor-pointer ${
+                        selectedIndex === index ? "bg-surface-elevated" : "hover:bg-surface-elevated/80"
                       }`}
-                      onClick={() => handleOptionClick(item.action, item.path)} // Pass both action and path
+                      onClick={() => handleOptionClick(item.action, item.path)}
                     >
                       {item.icon} {item.label}
                     </li>
@@ -122,20 +134,27 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
                 </ul>
               </>
             )}
-            
+
             {filteredNavigationItems.length > 0 && (
               <>
-                <h3 className="text-base font-semibold text-gray-400 px-4 pt-2">GO TO</h3>
-                <ul className="py-2">
+                <h3 className="text-xs font-medium text-muted-foreground uppercase tracking-wider px-4 pt-2">
+                  Go to
+                </h3>
+                <ul className="py-1">
                   {filteredNavigationItems.map((item, index) => (
-                    <li 
-                      key={index} 
-                      className={`flex items-center px-4 py-3 text-base hover:bg-gray-700 cursor-pointer ${
-                        selectedIndex === index + filteredGeneralItems.length ? 'bg-gray-700' : ''
+                    <li
+                      key={index}
+                      className={`flex items-center px-4 py-2.5 text-base rounded-md cursor-pointer ${
+                        selectedIndex === index + filteredGeneralItems.length
+                          ? "bg-surface-elevated"
+                          : "hover:bg-surface-elevated/80"
                       }`}
                       onClick={() => handleOptionClick(null, item.path)}
                     >
-                      {item.icon} <Link to={item.path}>{item.label}</Link>
+                      {item.icon}
+                      <Link to={item.path} className="text-foreground hover:text-accent transition-colors">
+                        {item.label}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -143,18 +162,17 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
             )}
 
             {filteredGeneralItems.length === 0 && filteredNavigationItems.length === 0 && (
-              <div className="text-gray-400 text-center py-8">
-                No results found for "{searchQuery}"
+              <div className="text-muted-foreground text-center py-8 text-sm">
+                No results for &ldquo;{searchQuery}&rdquo;
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Notification Popup */}
       {copyNotification && (
-        <div className="fixed bottom-4 right-4 bg-gray-900 text-white px-4 py-2 rounded shadow-lg">
-          Link copied to clipboard!
+        <div className="fixed bottom-4 right-4 bg-surface text-foreground px-4 py-2 rounded-md border border-border text-sm shadow-lg z-[10000]">
+          Link copied to clipboard
         </div>
       )}
     </>
@@ -169,94 +187,98 @@ export default function Navbar() {
     setShowPopup(!showPopup);
   };
 
-  const handleClosePopup = () => {
-    setShowPopup(false);
-  };
-
   const handleClickOutside = (event) => {
     if (popupRef.current && !popupRef.current.contains(event.target)) {
-      setShowPopup(false);
+      const backdrop = event.target.classList?.contains?.("bg-black");
+      if (event.target.classList.contains("bg-black") || event.target.getAttribute("aria-hidden")) {
+        setShowPopup(false);
+      }
     }
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
+    if (!showPopup) return;
+    const onMouseDown = (event) => {
+      if (popupRef.current && !popupRef.current.contains(event.target)) {
+        setShowPopup(false);
+      }
     };
-  }, []);
+    document.addEventListener("mousedown", onMouseDown);
+    return () => document.removeEventListener("mousedown", onMouseDown);
+  }, [showPopup]);
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      // Check if Ctrl+K is pressed
-      if (event.ctrlKey && event.key.toLowerCase() === 'k') {
-        event.preventDefault(); // Prevent browser default behavior
-        event.stopPropagation(); // Stop event from bubbling
-        setShowPopup(prev => !prev);
-      }
-      // Check if Escape is pressed
-      else if (event.key === 'Escape') {
+      if (event.ctrlKey && event.key.toLowerCase() === "k") {
+        event.preventDefault();
+        event.stopPropagation();
+        setShowPopup((prev) => !prev);
+      } else if (event.key === "Escape") {
         setShowPopup(false);
       }
     };
 
-    // Add event listener to document
-    document.addEventListener('keydown', handleKeyDown, true); // Use capture phase
-
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown, true);
-    };
+    document.addEventListener("keydown", handleKeyDown, true);
+    return () => document.removeEventListener("keydown", handleKeyDown, true);
   }, []);
 
   return (
-    <header className="w-full py-4 px-6 md:px-12 text-white relative">
+    <header className="w-full py-4 px-6 md:px-12 text-foreground relative border-b border-border/80">
       <div className="max-w-7xl mx-auto">
-        {/* Mobile Layout */}
         <div className="md:hidden">
-          <Link to="/" className="absolute left-6 text-2xl font-bold bg-gradient-to-r from-yellow-400 via-pink-500 to-blue-500 text-transparent bg-clip-text">
+          <Link
+            to="/"
+            className="absolute left-6 font-display text-2xl font-semibold text-accent hover:text-accent-hover transition-colors"
+            aria-label="About"
+          >
             S
           </Link>
-          <div className="absolute right-6 text-slate-400 hover:text-white hover:bg-white/10 transition-colors" onClick={togglePopup}>
+          <button
+            type="button"
+            className="absolute right-6 text-muted-foreground hover:text-foreground p-1 rounded-md hover:bg-surface transition-colors"
+            onClick={togglePopup}
+            aria-label="Open command palette"
+          >
             <Command className="w-5 h-5" />
-          </div>
-          <Popup showPopup={showPopup} popupRef={popupRef} onClose={handleClosePopup} />
+          </button>
+          <Popup showPopup={showPopup} popupRef={popupRef} onClose={() => setShowPopup(false)} />
           <div className="w-full overflow-x-auto pt-12">
-            <nav className="flex gap-6 text-sm tracking-widest px-4">
+            <nav className="flex gap-2 px-2 pb-1">
               {navItems.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.path}
-                  className="text-slate-400 hover:text-white hover:bg-gray-700 px-3 py-1 rounded transition-all duration-200"
-                >
-                  {item.name.toUpperCase()}
-                </Link>
+                <NavLink key={item.name} to={item.path} end={item.path === "/"} className={navLinkClass}>
+                  {item.name}
+                </NavLink>
               ))}
             </nav>
           </div>
         </div>
 
-        {/* Desktop Layout */}
         <div className="hidden md:flex items-center justify-center">
-          <Link to="/" className="absolute left-12 text-2xl font-bold bg-gradient-to-r from-yellow-400 via-pink-500 to-blue-500 text-transparent bg-clip-text">
+          <Link
+            to="/"
+            className="absolute left-12 font-display text-2xl font-semibold text-accent hover:text-accent-hover transition-colors"
+            aria-label="About"
+          >
             S
           </Link>
 
-          <nav className="flex gap-6 text-sm tracking-widest">
+          <nav className="flex gap-2">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className="text-gray-400 hover:text-white hover:bg-gray-700 px-3 py-1 rounded transition-all duration-200"
-              >
-                {item.name.toUpperCase()}
-              </Link>
+              <NavLink key={item.name} to={item.path} end={item.path === "/"} className={navLinkClass}>
+                {item.name}
+              </NavLink>
             ))}
           </nav>
 
-          <div className="absolute right-12 text-slate-400 hover:text-white hover:bg-white/10 transition-colors" onClick={togglePopup}>
+          <button
+            type="button"
+            className="absolute right-12 text-muted-foreground hover:text-foreground p-1 rounded-md hover:bg-surface transition-colors"
+            onClick={togglePopup}
+            aria-label="Open command palette"
+          >
             <Command className="w-5 h-5" />
-          </div>
-          <Popup showPopup={showPopup} popupRef={popupRef} onClose={handleClosePopup} />
+          </button>
+          <Popup showPopup={showPopup} popupRef={popupRef} onClose={() => setShowPopup(false)} />
         </div>
       </div>
     </header>
