@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Command, Link as LinkIcon, Mail, Code, User, GraduationCap, Briefcase, BookOpen } from "lucide-react";
+import { Command, Link as LinkIcon, Mail, User, GraduationCap, Briefcase, BookOpen } from "lucide-react";
 import { Link, NavLink } from "react-router-dom";
 
 const navItems = [
@@ -39,8 +39,6 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
       navigator.clipboard.writeText("https://soham-desai.vercel.app/");
       setCopyNotification(true);
       setTimeout(() => setCopyNotification(false), 5000);
-    } else if (action === "viewSource") {
-      window.open("https://github.com/devam1206/Soham-Portfolio", "_blank");
     } else if (path) {
       window.location.href = path;
     }
@@ -50,7 +48,6 @@ const Popup = ({ showPopup, popupRef, onClose }) => {
   const generalItems = [
     { icon: <LinkIcon className="w-5 h-5 mr-3 shrink-0" />, label: "Copy link", action: "copyLink" },
     { icon: <Mail className="w-5 h-5 mr-3 shrink-0" />, label: "Send email", path: "/contact" },
-    { icon: <Code className="w-5 h-5 mr-3 shrink-0" />, label: "View source", action: "viewSource" },
   ];
 
   const navigationItems = [
